@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Game Developer Survey Form</title>
+    <link rel="stylesheet" href="survey_styles.css">
+  </head>
+  <body>
+    <h1 id="title">Game Developer Survey Form</h1>
+    <p id="description" class="description">Thank you for taking the time!</p>
+
+    <form id="survey-form">
+      <fieldset>
+        <label for="name" id="name-label">Name</label>
+        <input id="name" type="text" required placeholder="Enter your name" class="blockfill">
+
+        <label for="email" id="email-label">Email</label>
+        <input id="email" type="email" required placeholder="Enter your Email" class="blockfill">
+
+        <label for="number" id="number-label">Age
+(optional)
+        <input id="number" type="number" min="0" max="200" placeholder="Age" class="inline">
+        </label>
+
+        <label for="dropdown">Which option best describes your current status?</label>
+        <select id="dropdown" class="blockfill">
+          <option>Select current status</option>
+          <option>Student</option>
+          <option>Full Time Job</option>
+          <option>Self-employed</option>
+          <option>Prefer not to say</option>
+          <option>Other</option>
+        </select>
+        
+        <label>Are you making income directly from self-developed game?</label>
+          <label class="list"><input type="radio" name="indie" value="1" checked>Definitely</label>
+          <label class="list"><input type="radio" name="indie" value="2">A bit</label>
+          <label class="list"><input type="radio" name="indie" value="3">Not at all</label>
+        <div class="listend"></div>
+
+        <label for="dropdown2">What area are you specialized in?</label>
+        <select id="dropdown2" class="blockfill">
+          <option>Select an option</option>
+          <option>Art</option>
+          <option>Programming</option>
+          <option>Sound</option>
+          <option>All Aspect</option>
+        </select>
+        
+        <label>What game engine are you familiar with? 
+          <label class="list"><input type="checkbox" value="1"> Unity</label>
+          <label class="list"><input type="checkbox" value="2"> Unreal</label>
+          <label class="list"><input type="checkbox" value="3"> Godot</label>
+          <label class="list"><input type="checkbox" value="4"> Etc</label>
+          <div class="listend"></div>
+      </fieldset>
+      <fieldset>
+        <label>Any comments or suggestions?</label>
+        <textarea placeholder="Enter your comment here..."></textarea>
+      </fieldset>
+      <button id="submit" type="submit">SUBMIT</button>
+    </form>
+  <body>
+</html>

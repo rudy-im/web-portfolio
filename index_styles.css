@@ -1,0 +1,151 @@
+:root {
+  --dark-theme: #302e3b;
+  --base-theme: #a38fb0;
+  --point: linen;
+  --dark-contrast: white;
+  --harmony: #7a226d;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+nav {
+  background-color: var(--base-theme);
+  padding: 20px 0;
+  margin: 0;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  text-align: right;
+  z-index: 1;
+}
+
+a {
+  text-decoration: none;
+  color: var(--dark-contrast);
+  text-transform: uppercase;
+  font-family: tahoma;
+  font-weight: bold;
+  margin: 0.2rem;
+}
+
+nav a:last-of-type {
+  margin-right: 2rem;
+}
+
+nav a:hover {
+  background-color: var(--harmony);
+}
+
+#welcome-section {
+  height: 100vh;
+  background-color: var(--dark-theme);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+#welcome-section h1 {
+  color: var(--dark-contrast);
+  font-family: impact;
+  font-size: 7rem;
+  animation: name-showing 1s ease-in-out 1;
+}
+
+@keyframes name-showing {
+  0% {
+    transform: scale(0);
+  }
+  80% {
+    transform: scale(1.2);
+  }
+  95% {
+    transform: scale(0.9);
+  }
+}
+
+.highlight {
+  position: absolute;
+  top: 65vh;
+  background-color: var(--point);
+  padding: 2vh;
+  width: 100vw;
+  text-align: center;
+  opacity: 70%;
+  color: var(--harmony);
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 2rem;
+  animation: highlight-line 2s ease-in-out 1;
+}
+
+@keyframes highlight-line {
+  0% {
+    width: 0;
+    padding: 0;
+    color: transparent;
+  }
+  50% {
+    width: 0;
+    padding: 0;
+    color: transparent;
+  }
+}
+
+#projects {
+  margin: 0;
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.project-tile img {
+  width: 20rem;
+  margin: 1rem;
+  vertical-align: middle;
+}
+
+#contact-section {
+  background-color: var(--dark-theme);
+  padding: 5rem 0;
+  text-align: center;
+}
+
+#contact-section a:hover {
+  background-color: var(--base-theme);
+}
+
+@media only screen and (max-width: 800px) {
+  .project-tile img {
+    width: 40vw;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  nav {
+    text-align: center;
+  }
+  nav a:last-of-type {
+    margin-right: 0.2rem;
+  }
+  #welcome-section h1 {
+    font-size: 20vw;
+  }
+  .highlight{
+    top: 60vh;
+    font-size: 8vw;
+    padding: 1vh;
+  }
+  #projects {
+    flex-direction: row;
+  }
+  .project-tile img {
+    width: 80vw;
+  }
+}
+

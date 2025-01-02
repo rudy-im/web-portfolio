@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Python</title>
+    <link rel="stylesheet" href="python_styles.css" />
+  </head>
+  <body>
+    <main id="main-doc">
+      
+      <section class="main-section" id="intro">
+        <header>intro</header>
+        <p>Python is an easy and powerful script language.</p>
+        <p>Let's start it with the "Hello world!"</p>
+        <code>print("Hello world!")</code>
+        <ul>
+          <li>You don't need semicolon at the end.</li>
+          <li>If you added a semicolon, it's fine. It will not give an error for that.</li>
+          <li>Indentation matters: instead of {}</li>
+          <li>Common grammers like data type, operators, etc. work</li>
+          <li>It's a script language, so the definition order matters.</li>
+        </ul>
+      </section>
+
+      <section class="main-section" id="if">
+        <header>if</header>
+        <p>You don't use () for condition.</p>
+        <p>You can use a colon instead.</p>
+        <code>
+          if condition==true:
+          <br>&nbsp;&nbsp;do(this)
+          <br>else:
+          <br>&nbsp;&nbsp;do(that)
+        </code>
+      </section>
+
+      <section class="main-section" id="while">
+        <header>while</header>
+        <p>It is similar to if statement.</p>
+        <p>Colon and indentation matter.</p>
+        <code>
+          while condition==true:
+          <br>&nbsp;&nbsp;keepDoing(this)
+        </code>
+      </section>
+
+      <section class="main-section" id="for">
+        <header>for</header>
+        <p>In Python, you can directly reference list items for for iteration, without defining an index variable.</p>
+        <code>
+          for item in itemList:
+          <br>&nbsp;&nbsp;process(item)
+        </code>
+        <p>If you want to use index, change the code like this.</p>
+        <code>
+          for i in range(count):
+          <br>&nbsp;&nbsp;process(itemList[i])
+        </code>
+      </section>
+
+      <section class="main-section" id="function">
+        <header>function</header>
+        <p>Lastly, define a function like this.</p>
+        <p>You can remove the return statement if you don't need it.</p>
+        <code>
+          def functionName(functionVariables):
+          <br>&nbsp;&nbsp;result = process(functionVariables)
+          <br>&nbsp;&nbsp;return result
+        </code>
+      </section>
+      </main>
+
+      <nav id="navbar">
+        <header>Python</header>
+        <a class="nav-link" href="#intro">intro</a>
+        <a class="nav-link" href="#if">if</a>
+        <a class="nav-link" href="#while">while</a>
+        <a class="nav-link" href="#for">for</a>
+        <a class="nav-link" href="#function">function</a>
+      </nav>
+      
+    
+  </body>
+<html>
