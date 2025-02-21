@@ -1,0 +1,121 @@
+:root {
+  --bg-color: #4f5e48;
+  --title-color: #edc272;
+  --text-color: #9c9281;
+  --widget-color: #ded1ba;
+  --highlight-color: #d6332b;
+}
+
+body {
+  background-color: var(--bg-color);
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  margin: max(min(5vw, 5vh), 15px);
+  text-align: center;
+  color: var(--title-color);
+  font-family: "comic sans ms";
+  font-size: max(min(10vw, 10vh), 30px);
+}
+
+h2 {
+  margin: 0;
+  text-align: center;
+  color: var(--widget-color);
+  font-family: tahoma;
+  font-size: max(min(6vw, 6vh), 20px);
+}
+
+p {
+  text-align: center;
+  color: var(--text-color);
+  font-family: calibri;
+  font-size: max(min(5vw, 5vh), 15px);
+}
+
+.input-div {
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+input {
+  border: 0;
+  background-color: var(--widget-color);
+  color: var(--bg-color);
+  width: max(50vw, 200px);
+  height: max(5vh, 15px);
+  font-size: max(4vh, 12px);
+  vertical-align: middle;
+}
+
+button {
+  border: max(min(1vw, 1vh), 5px) solid var(--title-color);
+  background-color: transparent;
+  color: var(--title-color);
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: max(3vh, 8px);
+  vertical-align: middle;
+  margin: 10px 0;
+}
+
+button:hover {
+  background-color: var(--text-color);
+  color: var(--widget-color);
+  border-color: var(--widget-color);
+}
+
+button:active {
+  background-color: var(--highlight-color);
+  border-color: var(--title-color);
+}
+
+#change-due {
+  background-color: var(--text-color);
+  width: min(80vw, 1200px);
+  height: max(20vh, 100px);
+  margin-top: 5vh;
+  padding: 3vh;
+  box-sizing: border-box;
+  border-radius: 3vh;
+  color: var(--bg-color);
+  font-family: sans-serif;
+  font-size: max(3vh, 10px);
+}
+
+@keyframes showcid {
+  0% {
+    top: -100vh;
+  }
+  90% {
+    top: 0;
+  }
+}
+
+#cid {
+  position: fixed;
+  width: 100vw;
+  background-color: var(--text-color);
+  color: var(--bg-color);
+  text-align: center;
+  font-family: sans-serif;
+  font-size: max(3vh, 10px);
+  padding: 2vh;
+  top: auto;
+  bottom: 93vh;
+}
+
+#cid:hover {
+  top: 0;
+  bottom: auto;
+}
+
