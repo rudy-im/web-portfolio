@@ -1,0 +1,112 @@
+:root {
+  --bg-color: #b4dced;
+  --deco-color: #f590b2;
+  --point-color: #329af0;
+  --output-box-color: #ffc14d;
+  --output-point-color: #f0762b;
+}
+
+body {
+  background-color: var(--bg-color);
+  padding: 0;
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.deco-nums {
+  width: max(min(90vw, 90vh), 300px);
+  height: max(min(90vw, 90vh), 300px);
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  z-index: -1;
+  display: flex;
+  justify-content: center;
+}
+
+.deco-num {
+  color: var(--deco-color);
+  font-family: tahoma;
+  font-size: max(min(9vw, 9vh), 30px);
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  height: max(min(90vw, 90vh), 300px);
+}
+
+#num-converter{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+h2 {
+  text-align: center;
+  font-family: sans-serif;
+  font-size: max(min(5vw, 5vh), 30px);
+  color: var(--point-color);
+  margin: 20px;
+}
+
+#number {
+  border: 2px solid var(--point-color);
+  height: 30px;
+  width: min(50vw, 50vh);
+  vertical-align: middle;
+  color: var(--point-color);
+  margin-bottom: 10px;
+}
+
+#number:focus-visible {
+  border: 5px solid var(--point-color);
+}
+
+#convert-btn {
+  border: none;
+  background-color: var(--point-color);
+  color: white;
+  font-family: impact;
+  font-size: 30px;
+  vertical-align: middle;
+  margin-bottom: 20px;
+  width: max(min(40vw, 40vh), 130px);
+}
+
+#convert-btn:hover {
+  background-color: var(--deco-color);
+}
+
+#convert-btn:active {
+  background-color: var(--deco-color);
+  transform: scale(0.9);
+}
+
+#output {
+  background-color: var(--output-box-color);
+  width: max(min(50vw, 50vh), 150px);
+  height: max(min(10vw, 10vh), 50px);
+  border-radius: 10px;
+  border: 5px double var(--output-point-color);
+  color: var(--output-point-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 5px;
+}
+
+.output-number {
+  font-family: impact;
+  font-size: 30px;
+}
+
+.output-message {
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: max(min(4vw, 4vh), 15px);
+}

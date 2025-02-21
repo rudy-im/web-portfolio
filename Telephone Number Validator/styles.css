@@ -1,0 +1,133 @@
+:root {
+  --bg-color: #18192e;
+  --anim-color: #c9a04d;
+  --text-color: white;
+  --widget-color: #db9c65;
+  --highlight-color: #85edd8;
+}
+
+body{
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-color);
+}
+
+#bg-img {
+  width: 100vw;
+  height: 100vh;
+  background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/New_office.jpg/220px-New_office.jpg);
+  background-size: cover;
+  background-position: center;
+  filter: blur(5px);
+  z-index: -2;
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  top: 0;
+  left: 0;
+  opacity: 20%;
+}
+
+@keyframes anim {
+  0% {
+    transform: rotate(50deg) translate(0, -220vh);
+  }
+  90% {
+    transform: rotate(50deg) translate(0, 0);
+  }
+}
+
+#bg-animation {
+  position: fixed;
+  background-color: var(--anim-color);
+  width: min(max(50vw, 300px), 450px);
+  height: max(300vw, 300vh);
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  transform: rotate(50deg);
+  z-index: -1;
+  animation: anim 1s 1;
+}
+
+.hide {
+  display: none;
+}
+
+#phonenumber-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+#input-div {
+  text-align: center;
+}
+
+#user-input {
+  border: 3px solid var(--widget-color);
+  color: var(--widget-color);
+  font-family: sans-serif;
+  font-size: max(min(3vw, 3vh), 20px);
+  width: min(70vw, 300px);
+}
+
+button {
+  border: 3px solid var(--widget-color);
+  color: var(--widget-color);
+  background-color: #FFFFFF77;
+}
+
+button:hover {
+  border-color: var(--highlight-color);
+  background-color: var(--widget-color);
+  color: var(--highlight-color);
+}
+
+button:active{
+  transform: scale(0.9);
+  background-color: var(--highlight-color);
+  color: white;
+}
+
+#clear-btn {
+  font-family: sans-serif;
+  font-size: max(min(3vw, 3vh), 20px);
+}
+
+#check-btn {
+  font-family: impact;
+  font-size: max(min(5vw, 5vh), 30px);
+  margin: 5px;
+  width: min(90vw, 300px);
+}
+
+@keyframes show-result {
+  0% {
+    transform: translate(0, 5vh);
+    opacity: 0%;
+  }
+  90% {
+    transform: translate(0, 0);
+    opacity: 100%;
+  }
+}
+
+#results-div {
+  font-family: calibri;
+  font-size: max(min(3vw, 3vh), 20px);
+  margin-top: 10px;
+  animation: show-result 1s 1;
+}
