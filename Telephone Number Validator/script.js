@@ -43,16 +43,16 @@ const checkInput = () => {
   try {
     match = input.match(validRegex);
   } catch (e) {
-    showResult("Invalid US number: " + input);
+    showResult("Invalid number: " + input);
     return;
   }
 
   if(!match || (match[1]!=='1' && match[1])){
-    showResult("Invalid US number: " + input);
+    showResult("Invalid number: " + input);
     return;
   }
 
-  showResult("Valid US number: " + input);
+  showResult("Valid number: " + input);
 }
 
 userInput.addEventListener("click", hideResult);
