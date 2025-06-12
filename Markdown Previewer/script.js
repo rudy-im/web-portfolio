@@ -46,7 +46,9 @@ function App() {
 
   return (
     <div className="container">
-      <div className="viewer" id="preview">{content}</div>
+      <div className="viewer" id="preview"
+        dangerouslySetInnerHTML={getHtml()}>
+      </div>
       <div className="editor">
         <textarea id="editor" value={content} onChange={handleChange} />
       </div>
