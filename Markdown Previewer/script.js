@@ -35,6 +35,15 @@ function App() {
     dispatch(setContent(e.target.value));
   };
 
+  const getHtml = () => {
+    const parsed = marked.parse(content);
+    
+    // personal parsing <br>
+    
+    //console.log(parsed);
+    return {__html: parsed};
+  }
+
   return (
     <div className="container">
       <div className="viewer" id="preview">{content}</div>
