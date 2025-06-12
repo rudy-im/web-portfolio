@@ -1,0 +1,64 @@
+* {
+  --dark-color: #13151f;
+  --light-color: #cbcdd4;
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.viewer, .editor {
+  margin: 0;
+  padding: 2rem 2rem;
+  box-sizing: border-box;
+}
+
+.viewer {
+  background-color: var(--light-color);
+  color: var(--dark-color);
+  font-size: max(3vw, 3vh);
+}
+
+.editor {
+  background-color: var(--dark-color);
+  color: var(--light-color);
+}
+
+#editor {
+  width: 100%;
+  height: 100%;
+  background-color: var(--dark-color);
+  color: var(--light-color);
+  border: 0;
+  font-size: 2em;
+}
+
+#editor:focus {
+  outline: none;
+}
+
+@media (min-aspect-ratio: 1/1) {
+  .container {
+    flex-direction: row;
+  }
+  
+  .editor, .viewer {
+    height: 100%;
+    width: 50%;
+  }
+}
+
+@media (max-aspect-ratio: 1/1) {
+  .container {
+    flex-direction: column;
+  }
+  
+  .editor, .viewer {
+    height: 50%;
+    width: 100%;
+  }
+}
