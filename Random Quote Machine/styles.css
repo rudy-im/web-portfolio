@@ -1,0 +1,67 @@
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#quote-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #191a1c;
+  color: white;
+  width: 100vw;
+  height: 100vh;
+}
+
+#text, #author {
+  width: min(500px, 80vw);
+}
+
+#text {
+  font-family: Frijole;
+}
+
+#author {
+  text-align: right;
+  font-family: "East Sea Dokdo";
+  margin-bottom: 1.5em;
+}
+
+#button-box, #new-quote, #tweet-quote{
+  vertical-align: middle;
+}
+
+#new-quote {
+  background-color: #595857;
+  border-radius: 5px;
+  text-decoration: none;
+  color: white;
+  font-family: Underdog;
+  font-size: 2em;
+  padding: 0.3em 0.5em;
+  cursor: pointer;
+}
+
+#new-quote:hover {
+  background-color: #827e7a;
+}
+
+#tweet-quote {
+  font-size: 3em;
+  margin-left: 1em;
+}
+
+.fa-twitter {
+    color: #1DA1F2;
+}
+
+.fa-twitter:hover {
+    color: #92c8e8;
+}
+
+#new-quote:active, #tweet-quote:active {
+  font-size: 1.5em;
+}
