@@ -36,9 +36,9 @@ function App() {
   };
 
   const getHtml = () => {
-    const parsed = marked.parse(content);
+    let parsed = marked.parse(content);
     
-    // personal parsing <br>
+    parsed = parsed.replace(/\n/g, "<br>");
     
     //console.log(parsed);
     return {__html: parsed};
