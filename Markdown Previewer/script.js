@@ -39,6 +39,8 @@ function App() {
     let parsed = marked.parse(content);
     
     parsed = parsed.replace(/\n/g, "<br>");
+    parsed = parsed.replace(/<\/h1>/g, '</h1>\n<hr>\n');
+    // remove table <br>
     
     //console.log(parsed);
     return {__html: parsed};
