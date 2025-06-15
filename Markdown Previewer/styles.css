@@ -21,6 +21,7 @@
   background-color: var(--light-color);
   color: var(--dark-color);
   font-size: max(3vw, 3vh);
+  overflow: auto;
 }
 
 .editor {
