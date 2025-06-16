@@ -40,7 +40,10 @@ function App() {
     
     parsed = parsed.replace(/\n/g, "<br>");
     parsed = parsed.replace(/<\/h1>/g, '</h1>\n<hr>\n');
-    // remove table <br>
+    parsed = parsed.replace(/<blockquote><br>/g, '<blockquote>');
+    parsed = parsed.replace(/<br>\n<\/blockquote>/g, '\n<\/blockquote>');
+    
+    parsed = parsed.replace(/(<table>|<\/?thead>|<\/?th>|<\/?tr>|<\/?td>)<br>/g, '$1');
     
     //console.log(parsed);
     return {__html: parsed};
