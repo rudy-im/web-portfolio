@@ -121,3 +121,18 @@ blockquote {
   border-left: max(0.3vw, 0.3vh) solid var(--dark-color);
   font-family: sans-serif;
 }
+
+th, td {
+  padding: max(0.7vw, 0.7vh);
+  border-radius: max(0.2vw, 0.2vh);
+  align-text: middle;
+}
+
+th {
+  font-family: sans-serif;
+  border: max(0.2vw, 0.2vh) solid var(--dark-color);
+}
+
+td{
+  border: max(0.1vw, 0.1vh) solid var(--dark-color);
+}
