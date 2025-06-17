@@ -136,3 +136,9 @@ th {
 td{
   border: max(0.1vw, 0.1vh) solid var(--dark-color);
 }
+
+img{
+  width: 70%;
+  display: block;
+  margin: 0 auto;
+}
