@@ -44,6 +44,7 @@ function App() {
     parsed = parsed.replace(/<br>\n<\/blockquote>/g, '\n<\/blockquote>');
     
     parsed = parsed.replace(/(<table>|<\/?thead>|<\/?th>|<\/?tr>|<\/?td>)<br>/g, '$1');
+    parsed = parsed.replace(/(<\/li>|<ul>|<\/ul>)<br>/g, '$1');
     
     //console.log(parsed);
     return {__html: parsed};
