@@ -3,6 +3,9 @@ import ReactDOM from "https://esm.sh/react-dom";
 import redux from "https://esm.sh/redux";
 import reactRedux from "https://esm.sh/react-redux";
 
+import { marked } from 'https://cdnjs.cloudflare.com/ajax/libs/marked/15.0.7/marked.min.js';
+
+import { sampleText } from './sampleText.js';
 
 
 
@@ -13,8 +16,7 @@ const setContent = (text) => ({
   payload: text
 });
 
-
-const reducer = (state = { content: '' }, action) => {
+const reducer = (state = { content: sampleText }, action) => {
   switch (action.type) {
     case SET_CONTENT:
       return { ...state, content: action.payload };
@@ -22,7 +24,6 @@ const reducer = (state = { content: '' }, action) => {
       return state;
   }
 };
-
 
 const store = Redux.createStore(reducer);
 const { Provider, useDispatch, useSelector } = ReactRedux;
@@ -38,15 +39,14 @@ function App() {
   const getHtml = () => {
     let parsed = marked.parse(content);
     
-    parsed = parsed.replace(/\n/g, "<br>");
+    parsed = parsed.replace(/\n/g, '<br>\n');
+    parsed = parsed.replace(/(<\/p>|<\/h\d?>|<blockquote>)<br>/g, '$1');
     parsed = parsed.replace(/<\/h1>/g, '</h1>\n<hr>\n');
-    parsed = parsed.replace(/<blockquote><br>/g, '<blockquote>');
     parsed = parsed.replace(/<br>\n<\/blockquote>/g, '\n<\/blockquote>');
     
     parsed = parsed.replace(/(<table>|<\/?thead>|<\/?th>|<\/?tr>|<\/?td>)<br>/g, '$1');
     parsed = parsed.replace(/(<\/li>|<ul>|<\/ul>)<br>/g, '$1');
     
-    //console.log(parsed);
     return {__html: parsed};
   }
 
