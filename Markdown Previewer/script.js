@@ -1,13 +1,3 @@
-import React from "https://esm.sh/react";
-import ReactDOM from "https://esm.sh/react-dom";
-import redux from "https://esm.sh/redux";
-import reactRedux from "https://esm.sh/react-redux";
-
-import { marked } from 'https://cdnjs.cloudflare.com/ajax/libs/marked/15.0.7/marked.min.js';
-
-import { sampleText } from './sampleText.js';
-
-
 
 const SET_CONTENT = 'SET_CONTENT';
 
