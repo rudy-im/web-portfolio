@@ -9,7 +9,7 @@ Then run any kind of server.
 
 > py -m http.server <port-number>   // python 3 server
 
-> npx serve .   // Node.js server. Port 3000.
+> npx serve .   // Node.js server - Port 3000
 
 
 
