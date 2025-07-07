@@ -1,1 +1,45 @@
 
+* {
+  background-color: gray;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+#drum-machine {
+  width: 60%;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 600px) {
+  #drum-machine {
+    width: 80%;
+  }
+}
+
+#display {
+  background-color: black;
+  width: 80%;
+  height: 20vh;
+  margin-bottom: 5vh;
+}
+
+#drum-pads {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 2vh 2vw;
+  width: 15vw;
+  height: 10vh;
+  box-sizing: border-box;
+  background-color: blue;
+}
