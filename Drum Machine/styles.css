@@ -58,8 +58,21 @@ url("https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Platin_Drums_PTCL
   border: min(1vh, 1vw) solid var(--theme-yellow);
   background-color: black;
   color: var(--theme-yellow);
+  transition: transform 0.1s ease;
 }
 
+.drum-pad:hover, .drum-pad.hover {
+  transform: translateY(-5px);
+}
+
+.drum-pad:active, .drum-pad.active {
+  transform: translateY(2px);
+  transition: transform 0.05s ease;
+}
+
+.drum-pad:focus {
+  outline: none;
+}
 
 @media (max-width: 600px) {
   #drum-machine {
