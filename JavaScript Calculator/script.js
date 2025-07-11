@@ -1,8 +1,7 @@
-
 $(document).ready(function() {
   let display = $("#display");
 
-  $(".btn").not("#equals, #clear").click(function() {
+  $(".number, .operator").click(function() {
     let current = display.val();
     let value = $(this).text();
     display.val(current + value);
