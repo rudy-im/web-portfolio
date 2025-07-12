@@ -1,5 +1,4 @@
 
-
 body {
   width: 100vw;
   height: 100vh;
@@ -8,7 +7,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: black;
+  background-color: #121624;
 }
 
 #display {
@@ -26,12 +25,28 @@ body {
   height: min(70vh, 650px);
 }
 
-.number, .operator, #clear, #equals {
+.number, .operator, .etc, #clear, #equals {
   font-size: min(8vh, 50px);
 }
 
 #equals {
-  grid-row-start: 3;
+  grid-row-start: 4;
   grid-row-end: 6;
   grid-column-start: 4;
+  color: white;
+  background-color: #726d75;
+}
+
+#clear {
+  color: white;
+  background-color: #de7873;
+}
+
+.operator {
+  color: white;
+  background-color: #8886b5;
+}
+
+.etc {
+  background-color: #ada7b0;
 }
