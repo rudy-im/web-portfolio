@@ -4,7 +4,21 @@ $(document).ready(function() {
   
   function addChar(char) {
     let current = display.val();
+    
     current = current.replace(/^0+/, "");
+    
+    if(char.match(/^[\+\-]$/)){
+      current = current.replace(/[\+\-\/\*]{2,}$/, "");
+    }
+    
+    if(char.match(/^[\*\/]$/)){
+      current = current.replace(/[\+\-\/\*]+$/, "");
+    }
+    
+    if(char===".") {
+      if(current.match(/\d+\.+\d*$/)) return;
+    }
+    
     display.val(current + char);
   }
   
