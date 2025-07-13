@@ -27,6 +27,7 @@ body {
 
 .number, .operator, .etc, #clear, #equals {
   font-size: min(8vh, 50px);
+  border: 1px solid #121624;
 }
 
 #equals {
