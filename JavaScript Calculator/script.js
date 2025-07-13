@@ -24,7 +24,9 @@ $(document).ready(function() {
   
   function backspace() {
     let current = display.val();
-    display.val(current.slice(0, -1));
+    current = current.slice(0, -1);
+    if(current.length===0) current = "0";
+    display.val(current);
   }
   
   function clear() {
