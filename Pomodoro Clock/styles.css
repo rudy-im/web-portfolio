@@ -1,1 +1,25 @@
 
+* {
+  --bg-color: #f5b87a;
+  --text-color: #f1f2da;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--bg-color);
+}
+
+body, .clock {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  font-family: "Luckiest Guy";
+  font-size: min(15vw, 15vh);
+  margin: min(1vw, 1vh);
+  color: var(--text-color);
+}
