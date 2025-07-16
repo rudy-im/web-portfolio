@@ -26,11 +26,19 @@ const timerSlice = createSlice({
         state.timeLeft = action.payload * 60;
       }
     },
+    changeSessionLength: (state, action) => {
+      state.sessionLength += action.payload;
+      if(state.sessionLength < 0) state.sessionLength = 0;
+    },
+    changeBreakLength: (state, action) => {
+      state.breakLength += action.payload;
+      if(state.breakLength < 0) state.breakLength = 0;
+    },
     toggleRunning: (state) => {
       state.isRunning = !state.isRunning;
     },
     reset: () => initialState,
-    decrementTime: (state) => {
+    runTimer: (state) => {
       if (state.timeLeft > 0) {
         state.timeLeft -= 1;
       } else {
@@ -45,9 +53,11 @@ const timerSlice = createSlice({
 const {
   setSessionLength,
   setBreakLength,
+  changeSessionLength,
+  changeBreakLength,
   toggleRunning,
   reset,
-  decrementTime,
+  runTimer,
 } = timerSlice.actions;
 
 const store = configureStore({
@@ -66,7 +76,7 @@ const App = () => {
     let timer;
     if (isRunning) {
       timer = setInterval(() => {
-        dispatch(decrementTime());
+        dispatch(runTimer());
       }, 1000);
     }
     return () => clearInterval(timer);
@@ -80,13 +90,16 @@ const App = () => {
 
   return React.createElement(
     "div",
-    null,
-    React.createElement("h1", null, "Pomodoro Clock"),
+    {className: "clock"},
+    React.createElement("h1", {className: "title"}, "POMODORO CLOCK"),
     React.createElement("h2", {id: "timer-label"}, mode === "session" ? "Work Session" : "Break Time"),
-    React.createElement("h1", {id: "timer-left"}, formatTime(timeLeft)),
+    React.createElement("h1", {id: "time-left"}, formatTime(timeLeft)),
     React.createElement("div", null,
                         React.createElement("label", {id: "session-label"}, "Session Length: "),
-                        React.createElement("button", {id: "session-decrement"}, "▼"),
+                        React.createElement("button", {
+      id: "session-decrement",
+      onClick: (e) => dispatch(changeSessionLength(-1))
+    }, "▼"),
                         React.createElement("input", {
       id: "session-length",
       type: "number",
@@ -95,11 +108,17 @@ const App = () => {
       value: sessionLength,
       onChange: (e) => dispatch(setSessionLength(Number(e.target.value))),
     }),
-                        React.createElement("button", {id: "session-increment"}, "▲")
+                        React.createElement("button", {
+      id: "session-increment",
+      onClick: (e) => dispatch(changeSessionLength(1))
+    }, "▲")
                        ),
     React.createElement("div", null,
                         React.createElement("label", {id: "break-label"}, "Break Length: "),
-                        React.createElement("button", {id: "break-decrement"}, "▼"),
+                        React.createElement("button", {
+      id: "break-decrement",
+      onClick: (e) => dispatch(changeBreakLength(-1))
+    }, "▼"),
                         React.createElement("input", {
       id: "break-length",
       type: "number",
@@ -108,7 +127,10 @@ const App = () => {
       value: breakLength,
       onChange: (e) => dispatch(setBreakLength(Number(e.target.value))),
     }),
-                        React.createElement("button", {id: "break-increment"}, "▲")
+                        React.createElement("button", {
+      id: "break-increment",
+      onClick: (e) => dispatch(changeBreakLength(1))
+    }, "▲")
                        ),
     React.createElement("div", null,
                         React.createElement("button", { 
@@ -130,4 +152,3 @@ root.render(
                       React.createElement(App)
                      )
 );
-
