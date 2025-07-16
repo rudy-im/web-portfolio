@@ -92,9 +92,10 @@ const App = () => {
     "div",
     {className: "clock"},
     React.createElement("h1", {className: "title"}, "POMODORO CLOCK"),
-    React.createElement("h2", {id: "timer-label"}, mode === "session" ? "Work Session" : "Break Time"),
-    React.createElement("h1", {id: "time-left"}, formatTime(timeLeft)),
-    React.createElement("div", null,
+    React.createElement("fieldset", {className: "timer"}, 
+                        React.createElement("legend", {id: "timer-label"}, mode === "session" ? "Work Session" : "Break Time"),
+                        React.createElement("h1", {id: "time-left"}, formatTime(timeLeft))),
+    React.createElement("div", {className: "length-container"},
                         React.createElement("label", {id: "session-label"}, "Session Length: "),
                         React.createElement("button", {
       id: "session-decrement",
@@ -113,7 +114,7 @@ const App = () => {
       onClick: (e) => dispatch(changeSessionLength(1))
     }, "▲")
                        ),
-    React.createElement("div", null,
+    React.createElement("div", {className: "length-container"},
                         React.createElement("label", {id: "break-label"}, "Break Length: "),
                         React.createElement("button", {
       id: "break-decrement",
