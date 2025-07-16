@@ -1,7 +1,7 @@
-
 * {
   --bg-color: #f5b87a;
   --text-color: #f1f2da;
+  --deco-color: #88b7d1;
 }
 
 body {
@@ -23,3 +23,55 @@ body, .clock {
   margin: min(1vw, 1vh);
   color: var(--text-color);
 }
+
+.timer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: min(1vw, 1vh) min(10vw, 10vh);
+  background-color: var(--text-color);
+  border-radius: min(5vw, 5vh);
+  border: min(1vw, 1vh) solid var(--deco-color);
+}
+
+#timer-label {
+  margin: 0;
+  font-family: sans-serif;
+  font-size: min(8vw, 8vh);
+  text-align: center;
+  color: var(--deco-color);
+  text-shadow:
+    -1px -1px 0 var(--text-color),
+     1px -1px 0 var(--text-color),
+    -1px  1px 0 var(--bg-color),
+     1px  1px 0 var(--bg-color);
+}
+
+#time-left {
+  margin: 0;
+  font-family: "Bitcount Grid Double";
+  font-size: min(20vw, 20vh);
+  color: var(--bg-color);
+}
+
+#session-increment, #session-decrement, #break-increment, #break-decrement {
+  border: 0;
+  background: none;
+  color: var(--text-color);
+  font-size: min(10vw, 10vh);
+}
+
+.length-container {
+  margin-top: min(4vw, 4vh);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#session-label, #break-label {
+  font-family: impact;
+  color: var(--text-color);
+  font-size: min(8vw, 8vh);
+}
+
