@@ -92,9 +92,20 @@ const App = () => {
     "div",
     {className: "clock"},
     React.createElement("h1", {className: "title"}, "POMODORO CLOCK"),
-    React.createElement("fieldset", {className: "timer"}, 
-                        React.createElement("legend", {id: "timer-label"}, mode === "session" ? "Work Session" : "Break Time"),
-                        React.createElement("h1", {id: "time-left"}, formatTime(timeLeft))),
+    React.createElement("div", {className: "timer-container"},
+                        React.createElement("fieldset", {className: "timer"}, 
+                                            React.createElement("legend", {id: "timer-label"}, mode === "session" ? "Work Session" : "Break Time"),
+                                            React.createElement("h1", {id: "time-left"}, formatTime(timeLeft))),
+                        React.createElement("div", {className: "play-container"},
+                                            React.createElement("button", { 
+      id: "start_stop",
+      onClick: () => dispatch(toggleRunning()) },
+                                            isRunning ? React.createElement("i", {className: "fa-solid fa-pause"}) : React.createElement("i", {className: "fa-solid fa-play"})),
+                        React.createElement("button", { 
+      id: "reset",
+      onClick: () => dispatch(reset()) }, 
+                                            React.createElement("i", {className: "fa-solid fa-rotate-left"}))
+                       )),
     React.createElement("div", {className: "length-container"},
                         React.createElement("label", {id: "session-label"}, "Session Length: "),
                         React.createElement("button", {
@@ -133,17 +144,6 @@ const App = () => {
       onClick: (e) => dispatch(changeBreakLength(1))
     }, "▲")
                        ),
-    React.createElement("div", null,
-                        React.createElement("button", { 
-      id: "start_stop",
-      onClick: () => dispatch(toggleRunning()) },
-                                            isRunning ? "Pause" : "Start"
-                                           ),
-                        React.createElement("button", { 
-      id: "reset",
-      onClick: () => dispatch(reset()) }, 
-                                            "Reset")
-                       )
   );
 };
 
