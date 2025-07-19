@@ -1,6 +1,6 @@
 const { createSlice, configureStore } = RTK;
 const { Provider, useDispatch, useSelector } = ReactRedux;
-const { useEffect } = React;
+const { useRef, useEffect } = React;
 
 const initialState = {
   sessionLength: 25,
@@ -8,6 +8,7 @@ const initialState = {
   isRunning: false,
   mode: 'session',
   timeLeft: 25 * 60,
+  isBeeping: false,
 };
 
 const timerSlice = createSlice({
@@ -16,23 +17,33 @@ const timerSlice = createSlice({
   reducers: {
     setSessionLength: (state, action) => {
       state.sessionLength = action.payload;
+      if(state.sessionLength < 1) state.sessionLength = 1;
+      if(state.sessionLength > 60) state.sessionLength = 60;
       if (state.mode === 'session') {
-        state.timeLeft = action.payload * 60;
+        state.timeLeft = state.sessionLength * 60;
       }
     },
     setBreakLength: (state, action) => {
       state.breakLength = action.payload;
+      if(state.breakLength < 1) state.breakLength = 1;
+      if(state.breakLength > 60) state.breakLength = 60;
       if (state.mode === 'break') {
-        state.timeLeft = action.payload * 60;
+        state.timeLeft = state.breakLength * 60;
       }
     },
     changeSessionLength: (state, action) => {
       state.sessionLength += action.payload;
-      if(state.sessionLength < 0) state.sessionLength = 0;
+      if(state.sessionLength < 1) state.sessionLength = 1;
+      if(state.sessionLength > 60) state.sessionLength = 60;
+      state.mode = 'session';
+      state.timeLeft = state.sessionLength * 60;
     },
     changeBreakLength: (state, action) => {
       state.breakLength += action.payload;
-      if(state.breakLength < 0) state.breakLength = 0;
+      if(state.breakLength < 1) state.breakLength = 1;
+      if(state.breakLength > 60) state.breakLength = 60;
+      state.mode = 'break';
+      state.timeLeft = state.breakLength * 60;
     },
     toggleRunning: (state) => {
       state.isRunning = !state.isRunning;
@@ -41,6 +52,8 @@ const timerSlice = createSlice({
     runTimer: (state) => {
       if (state.timeLeft > 0) {
         state.timeLeft -= 1;
+        if(state.timeLeft==0) state.isBeeping = true;
+        else state.isBeeping = false;
       } else {
         state.mode = state.mode === 'session' ? 'break' : 'session';
         state.timeLeft =
@@ -68,9 +81,11 @@ const store = configureStore({
 
 const App = () => {
   const dispatch = useDispatch();
-  const { sessionLength, breakLength, timeLeft, isRunning, mode } = useSelector(
+  const { sessionLength, breakLength, isRunning, mode, timeLeft, isBeeping } = useSelector(
     (state) => state.timer
   );
+  
+  const beepRef = useRef(null);
 
   useEffect(() => {
     let timer;
@@ -81,6 +96,19 @@ const App = () => {
     }
     return () => clearInterval(timer);
   }, [isRunning, dispatch]);
+  
+  useEffect(() => {
+    if (!beepRef.current) return;
+    beepRef.current.volume = 0.05;
+    
+    if (isBeeping) {
+      beepRef.current.play();
+      beepRef.current.currentTime = 0;
+    } else {
+      beepRef.current.pause();
+      beepRef.current.currentTime = 0;
+    }
+  }, [timeLeft]);
 
   const formatTime = (seconds) => {
     const m = String(Math.floor(seconds / 60)).padStart(2, '0');
@@ -91,59 +119,66 @@ const App = () => {
   return React.createElement(
     "div",
     {className: "clock"},
+    React.createElement("audio", {
+      id: "beep",
+      ref: beepRef,
+      src: "https://cdn.freecodecamp.org/testable-projects-fcc/audio/BeepSound.wav"
+    }),
     React.createElement("h1", {className: "title"}, "POMODORO CLOCK"),
+    
     React.createElement("div", {className: "timer-container"},
-                        React.createElement("fieldset", {className: "timer"}, 
-                                            React.createElement("legend", {id: "timer-label"}, mode === "session" ? "Work Session" : "Break Time"),
-                                            React.createElement("h1", {id: "time-left"}, formatTime(timeLeft))),
-                        React.createElement("div", {className: "play-container"},
-                                            React.createElement("button", { 
-      id: "start_stop",
-      onClick: () => dispatch(toggleRunning()) },
-                                            isRunning ? React.createElement("i", {className: "fa-solid fa-pause"}) : React.createElement("i", {className: "fa-solid fa-play"})),
-                        React.createElement("button", { 
-      id: "reset",
-      onClick: () => dispatch(reset()) }, 
-                                            React.createElement("i", {className: "fa-solid fa-rotate-left"}))
-                       )),
+      React.createElement("fieldset", {className: "timer"}, 
+        React.createElement("legend", {id: "timer-label"}, mode === "session" ? "Work Session" : "Break Time"),
+        React.createElement("h1", {id: "time-left"}, formatTime(timeLeft))),
+      React.createElement("div", {className: "play-container"},
+        React.createElement("button", { 
+          id: "start_stop",
+          onClick: () => dispatch(toggleRunning()) 
+        }, isRunning ? 
+          React.createElement("i", {className: "fa-solid fa-pause"}) : 
+          React.createElement("i", {className: "fa-solid fa-play"})),
+        React.createElement("button", { 
+          id: "reset",
+          onClick: () => dispatch(reset()) 
+        }, React.createElement("i", {className: "fa-solid fa-rotate-left"})))),
+    
     React.createElement("div", {className: "length-container"},
-                        React.createElement("label", {id: "session-label"}, "Session Length: "),
-                        React.createElement("button", {
-      id: "session-decrement",
-      onClick: (e) => dispatch(changeSessionLength(-1))
-    }, "▼"),
-                        React.createElement("input", {
-      id: "session-length",
-      type: "number",
-      min: 1,
-      max: 60,
-      value: sessionLength,
-      onChange: (e) => dispatch(setSessionLength(Number(e.target.value))),
-    }),
-                        React.createElement("button", {
-      id: "session-increment",
-      onClick: (e) => dispatch(changeSessionLength(1))
-    }, "▲")
-                       ),
+      React.createElement("label", {id: "session-label"}, "Session Length: "),
+      React.createElement("button", {
+        id: "session-decrement",
+        onClick: (e) => dispatch(changeSessionLength(-1))
+      }, "▼"),
+      React.createElement("input", {
+        id: "session-length",
+        type: "number",
+        min: 1,
+        max: 60,
+        value: sessionLength,
+        onChange: (e) => dispatch(setSessionLength(Number(e.target.value))),
+      }),
+      React.createElement("button", {
+        id: "session-increment",
+        onClick: (e) => dispatch(changeSessionLength(1))
+      }, "▲")),
+    
     React.createElement("div", {className: "length-container"},
-                        React.createElement("label", {id: "break-label"}, "Break Length: "),
-                        React.createElement("button", {
-      id: "break-decrement",
-      onClick: (e) => dispatch(changeBreakLength(-1))
-    }, "▼"),
-                        React.createElement("input", {
-      id: "break-length",
-      type: "number",
-      min: 1,
-      max: 30,
-      value: breakLength,
-      onChange: (e) => dispatch(setBreakLength(Number(e.target.value))),
-    }),
-                        React.createElement("button", {
-      id: "break-increment",
-      onClick: (e) => dispatch(changeBreakLength(1))
-    }, "▲")
-                       ),
+      React.createElement("label", {id: "break-label"}, "Break Length: "),
+      React.createElement("button", {
+        id: "break-decrement",
+        onClick: (e) => dispatch(changeBreakLength(-1))
+      }, "▼"),
+      React.createElement("input", {
+        id: "break-length",
+        type: "number",
+        min: 1,
+        max: 30,
+        value: breakLength,
+        onChange: (e) => dispatch(setBreakLength(Number(e.target.value))),
+      }),
+      React.createElement("button", {
+        id: "break-increment",
+        onClick: (e) => dispatch(changeBreakLength(1))
+      }, "▲")),
   );
 };
 
