@@ -8,7 +8,6 @@ const initialState = {
   isRunning: false,
   mode: 'session',
   timeLeft: 25 * 60,
-  isBeeping: false,
 };
 
 const timerSlice = createSlice({
@@ -52,8 +51,6 @@ const timerSlice = createSlice({
     runTimer: (state) => {
       if (state.timeLeft > 0) {
         state.timeLeft -= 1;
-        if(state.timeLeft==0) state.isBeeping = true;
-        else state.isBeeping = false;
       } else {
         state.mode = state.mode === 'session' ? 'break' : 'session';
         state.timeLeft =
@@ -81,12 +78,12 @@ const store = configureStore({
 
 const App = () => {
   const dispatch = useDispatch();
-  const { sessionLength, breakLength, isRunning, mode, timeLeft, isBeeping } = useSelector(
+  const { sessionLength, breakLength, isRunning, mode, timeLeft } = useSelector(
     (state) => state.timer
   );
   
-  const beepRef = useRef(null);
-
+  const beepRef = useRef(null)
+  
   useEffect(() => {
     let timer;
     if (isRunning) {
@@ -96,21 +93,13 @@ const App = () => {
     }
     return () => clearInterval(timer);
   }, [isRunning, dispatch]);
-  
-  useEffect(() => {
-    if (!beepRef.current) return;
-    beepRef.current.volume = 0.05;
-    
-    if (isBeeping) {
-      beepRef.current.play();
-      beepRef.current.currentTime = 0;
-    } else {
-      beepRef.current.pause();
-      beepRef.current.currentTime = 0;
-    }
-  }, [timeLeft]);
 
   const formatTime = (seconds) => {
+    if(timeLeft==0){
+      beepRef.current.volume = 0.05;
+      beepRef.current.currentTime = 0;
+      beepRef.current.play();
+    }
     const m = String(Math.floor(seconds / 60)).padStart(2, '0');
     const s = String(seconds % 60).padStart(2, '0');
     return `${m}:${s}`;
@@ -139,7 +128,11 @@ const App = () => {
           React.createElement("i", {className: "fa-solid fa-play"})),
         React.createElement("button", { 
           id: "reset",
-          onClick: () => dispatch(reset()) 
+          onClick: () => {
+            dispatch(reset());
+            beepRef.current.pause();
+            beepRef.current.currentTime = 0;
+          }
         }, React.createElement("i", {className: "fa-solid fa-rotate-left"})))),
     
     React.createElement("div", {className: "length-container"},
