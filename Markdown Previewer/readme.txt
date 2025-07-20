@@ -3,6 +3,10 @@ In command line, move to the project folder.
 
 > cd <path>
 
+For external drive and path with blanks, adjust command a bit.
+
+> cd /d "<path>"
+
 
 
 Then run any kind of server.
